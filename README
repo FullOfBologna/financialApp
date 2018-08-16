@@ -1,0 +1,8 @@
+Prototype Project for a financial organization application. Features will include:
+
+	-Debt repayment suggestions and projections
+	-Savings and investment projections
+	-Account balance history and projections
+	-Salary calculations
+
+Prototyped in python and qt4
