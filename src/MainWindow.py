@@ -2,6 +2,8 @@ import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
+from DebtWidget import *
+
 class MainWindow(QWidget):
 
     def __init__(self):
@@ -12,4 +14,11 @@ class MainWindow(QWidget):
     def initUi(self):
         self.resize(300,500)
         self.setWindowTitle('Financial Application')
+
+        self.layout = QGridLayout(self)
+        self.setLayout(self.layout)
+
+        self.debtInfo = DebtWidget()
+
+        self.layout.addWidget(self.debtInfo)
 
