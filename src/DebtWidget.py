@@ -78,23 +78,55 @@ class DebtWidget(QWidget):
         balance = 0.0
         interestRate = 0.0
         minimumPayment = 0.0
+        extraPayment = 0.0
 
-        balanceSet = false
-        interestSet = false
-        minimumPaymentSet = false
+        balanceRemainingList = []
+        totalMonthlyInterestList = []
+        totalInterestPaid = 0
+        
+
+        balanceSet = False
+        interestRateSet = False
+        minimumPaymentSet = False
+        
 
         if self.balanceLineEdit.text() != "": 
             balance = self.balanceLineEdit.text().toFloat()
             #print balance
-            balanceSet = true;
+            balanceSet = True;
         
         if self.interestLineEdit.text() != "":
             if ((interestRate > 0) and (interestRate < 100)):
                 interestRate = self.interestRate.text().toFloat()/100
-                interestRateSet = true;
+                interestRateSet = True;
 
         if self.minimumPaymentEdit.text() != "":
-            minimumPayment = self.minimumPayment.text().toFloat()
+            minimumPayment = self.minimumPaymentEdit.text().toFloat()
+            minimumPaymentSet = True
+        
+        dateOfPayment = 01
+
+        if balanceSet and interestRateSet and minimumPaymentSet:
+            currentBalance = balance
+            currentDate = QDate.currentDate()
+            while(currentBalance > 0):
+                currentBalance = currentBalance*(1+interestRate)
+                totalInterest = totalInterest + (currentBalance*interestRate)
+                totalMonthlyInterest = totalMonthlyInterest + (currentBalance*interestRate)
+
+                currentDate.addDays(1)
+
+                if(currentDate.day() == dateOfPayment):
+                    qDebug('current Day = ', dateOfPayment)
+                    currentBalance = currentBalance - minimumPayment
+
+                    totalMonthlyInterestList.append(totalMonthlyInterest)
+                    
+                    print "Total Monthly Interest Paid: ", totalMonthlyInterest
+                    
+                    totalMonthlyInterest = 0
+
+
 
         
 
