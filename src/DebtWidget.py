@@ -1,5 +1,7 @@
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+
+from matplotlib import * 
 
 class DebtWidget(QWidget):
    
@@ -91,17 +93,17 @@ class DebtWidget(QWidget):
         
 
         if self.balanceLineEdit.text() != "": 
-            balance = self.balanceLineEdit.text().toFloat()
+            balance = self.balanceLineEdit.getText().toFloat()
             #print balance
             balanceSet = True;
         
         if self.interestLineEdit.text() != "":
             if ((interestRate > 0) and (interestRate < 100)):
-                interestRate = self.interestRate.text().toFloat()/100
+                interestRate = self.interestRate.getText().toFloat()/100
                 interestRateSet = True;
 
         if self.minimumPaymentEdit.text() != "":
-            minimumPayment = self.minimumPaymentEdit.text().toFloat()
+            minimumPayment = self.minimumPaymentEdit.getText().toFloat()
             minimumPaymentSet = True
         
         dateOfPayment = 01
@@ -126,7 +128,7 @@ class DebtWidget(QWidget):
                     
                     totalMonthlyInterest = 0
 
-
+           #Debt Widget makes a call to pop up a matbplotlib plot with incremental payment options. 
 
         
 
