@@ -2,6 +2,8 @@ import sys
 
 from DebtWidget import *
 
+import PlotWidget
+
 class MainWindow(QWidget):
 
     def __init__(self):
@@ -12,7 +14,23 @@ class MainWindow(QWidget):
     def initUi(self):
         self.resize(1500,1300)
         self.setWindowTitle('Financial Application')
+        
+        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        
+        self.file_menu = QtWidgets.QMenu('&File',self)
+        self.file_menu.addAction('&Quit',self.fileQuit,
+                                 QtCore.Qt.CTRL + QtCore.Qt.Key_Q)
 
+        self.menuBar().addMenu(self.file_menu)
+
+        self.help_menu = QtWidget.QMenu('&Help',self)
+        self.menuBar().addSeparator()
+        self.menuBar().addMenu(self.help_menu)
+
+        self.help_menu.addAction('&About',self.about)
+
+        self.mainWidget = QWidgets
+        
         self.layout = QGridLayout(self)
         self.setLayout(self.layout)
         
